@@ -1,0 +1,329 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PocketSynth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-row">
+            <div class="synth-logo">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 19.5V21H21V19.5H13Z" fill="#FF9800"/>
+                    <path d="M3 19.5V21H11V19.5H3Z" fill="#FF9800"/>
+                    <path d="M7 13.5V18H8V13.5H7Z" fill="#5E35B1"/>
+                    <path d="M16 13.5V18H17V13.5H16Z" fill="#5E35B1"/>
+                    <path d="M3 4.5V6H21V4.5H3Z" fill="#FF9800"/>
+                    <path d="M7 7V11.5H17V7H7Z" fill="#4A6EB0"/>
+                    <path d="M19 13.5V15.5H21V13.5H19Z" fill="#FF9800"/>
+                    <path d="M3 13.5V15.5H5V13.5H3Z" fill="#FF9800"/>
+                    <path d="M17 13.5V15.5H19V13.5H17Z" fill="#FF9800"/>
+                    <path d="M5 13.5V15.5H7V13.5H5Z" fill="#FF9800"/>
+                </svg>
+                <h1>PocketSynth</h1>
+            </div>
+            
+            <div class="top-controls">
+                <button id="help-button" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 17V17.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 14C11.9816 13.5 12 13 12.5 12.5C13 12 14 11.5 14 10.5C14 9.5 13 8.5 12 8.5C11 8.5 10 9 10 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Help
+                </button>
+            </div>
+        </div>
+        
+        <!-- Help section (hidden by default) -->
+        <div id="help-section" class="help-section hidden">
+            <div class="help-content">
+                <h2>PocketSynth Help</h2>
+                <button id="close-help" class="close-btn">×</button>
+                
+                <div class="help-tabs">
+                    <button class="help-tab-button active" data-help-tab="basics">Basics</button>
+                    <button class="help-tab-button" data-help-tab="features">Features</button>
+                    <button class="help-tab-button" data-help-tab="controls">Controls</button>
+                    <button class="help-tab-button" data-help-tab="tips">Tips</button>
+                </div>
+                
+                <div class="help-panel active" id="basics-panel">
+                    <h3>Welcome to PocketSynth!</h3>
+                    <p>PocketSynth is a powerful mobile synthesizer that runs in your browser. Play notes by tapping the keyboard at the bottom of the screen.</p>
+                    <p>You can play multiple notes at once (polyphony) and slide across keys to create expressive melodies.</p>
+                    <h4>Getting Started:</h4>
+                    <ul>
+                        <li>Tap any key on the keyboard to play a note</li>
+                        <li>Use the tabs to access different control panels</li>
+                        <li>Adjust controls by sliding the various sliders</li>
+                        <li>If sounds get stuck, use the "Stop All Sounds" button</li>
+                    </ul>
+                </div>
+                
+                <div class="help-panel" id="features-panel">
+                    <h3>Features</h3>
+                    <div class="feature-item">
+                        <h4>Oscillator Types</h4>
+                        <p>Change the waveform type (sine, square, triangle, sawtooth) to create different timbres.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>ADSR Envelope</h4>
+                        <p>Shape your sounds using Attack and Release controls in the Envelope tab.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Effects</h4>
+                        <p>Add reverb and delay to enhance your sound in the Effects tab.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Octave Shifter</h4>
+                        <p>Shift the keyboard up or down to access notes in different octaves.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Scale Lock</h4>
+                        <p>Lock the keyboard to specific scales so every note sounds harmonious.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Chord Mode</h4>
+                        <p>Play chords automatically when pressing a single key.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Presets</h4>
+                        <p>Save and load your favorite synth settings.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Visualizer</h4>
+                        <p>See your sounds with a real-time waveform display.</p>
+                    </div>
+                </div>
+                
+                <div class="help-panel" id="controls-panel">
+                    <h3>Controls</h3>
+                    <h4>Sound Tab</h4>
+                    <ul>
+                        <li><strong>Waveform</strong>: Changes the oscillator type</li>
+                        <li><strong>Volume</strong>: Controls the overall volume</li>
+                        <li><strong>Filter</strong>: Adjusts the cutoff frequency of a lowpass filter</li>
+                    </ul>
+                    
+                    <h4>Envelope Tab</h4>
+                    <ul>
+                        <li><strong>Attack</strong>: Sets how quickly a note reaches full volume (1-1000ms)</li>
+                        <li><strong>Release</strong>: Sets how quickly a note fades out when released (50-2000ms)</li>
+                    </ul>
+                    
+                    <h4>Effects Tab</h4>
+                    <ul>
+                        <li><strong>Reverb</strong>: Adds space and ambience to your sound</li>
+                        <li><strong>Delay</strong>: Creates echo effects</li>
+                    </ul>
+                    
+                    <h4>Advanced Tab</h4>
+                    <ul>
+                        <li><strong>Scale</strong>: Sets the musical scale for the keyboard</li>
+                        <li><strong>Detune</strong>: Adds multiple slightly detuned oscillators for a richer sound</li>
+                        <li><strong>Chord Mode</strong>: Selects chord types to play</li>
+                    </ul>
+                </div>
+                
+                <div class="help-panel" id="tips-panel">
+                    <h3>Tips & Tricks</h3>
+                    <ul>
+                        <li>For bass sounds, shift down an octave and use sawtooth or square waves</li>
+                        <li>For ambient pads, increase reverb and use longer attack/release times</li>
+                        <li>For plucky sounds, use short attack and medium release times</li>
+                        <li>Combine chord mode with arpeggiator for instant melodic patterns</li>
+                        <li>Save your favorite settings as presets to quickly recall them</li>
+                        <li>On desktop computers, you can use your keyboard (A-K keys) to play notes</li>
+                        <li>If audio gets glitchy, try refreshing the page or pressing the panic button</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="visualizer-container">
+            <canvas id="visualizer" width="320" height="80"></canvas>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-button active" data-tab="sound">Sound</button>
+            <button class="tab-button" data-tab="envelope">Envelope</button>
+            <button class="tab-button" data-tab="effects">Effects</button>
+            <button class="tab-button" data-tab="advanced">Advanced</button>
+        </div>
+        
+        <div class="controls-panel" id="sound-panel">
+            <div class="control-item">
+                <label for="waveform">Waveform</label>
+                <select id="waveform">
+                    <option value="sine">Sine</option>
+                    <option value="square">Square</option>
+                    <option value="triangle">Triangle</option>
+                    <option value="sawtooth">Sawtooth</option>
+                </select>
+            </div>
+            
+            <div class="control-item">
+                <label for="volume">Volume</label>
+                <input type="range" id="volume" min="0" max="1" step="0.05" value="0.8">
+                <div class="value-display">80%</div>
+            </div>
+            
+            <div class="control-item">
+                <label for="filter">Filter</label>
+                <input type="range" id="filter" min="0" max="1" step="0.05" value="0.7">
+                <div class="value-display">70%</div>
+            </div>
+        </div>
+        
+        <div class="controls-panel hidden" id="envelope-panel">
+            <div class="control-item">
+                <label for="attack">Attack</label>
+                <input type="range" id="attack" min="0.01" max="1" step="0.01" value="0.05">
+                <div class="value-display">50ms</div>
+            </div>
+            
+            <div class="control-item">
+                <label for="release">Release</label>
+                <input type="range" id="release" min="0.05" max="2" step="0.05" value="0.2">
+                <div class="value-display">200ms</div>
+            </div>
+        </div>
+        
+        <div class="controls-panel hidden" id="effects-panel">
+            <div class="control-item">
+                <label for="reverb">Reverb</label>
+                <input type="range" id="reverb" min="0" max="0.9" step="0.05" value="0.3">
+                <div class="value-display">30%</div>
+            </div>
+            
+            <div class="control-item">
+                <label for="delay">Delay</label>
+                <input type="range" id="delay" min="0" max="0.8" step="0.05" value="0.3">
+                <div class="value-display">300ms</div>
+            </div>
+        </div>
+        
+        <div class="controls-panel hidden" id="advanced-panel">
+            <div class="control-item">
+                <label for="key">Key</label>
+                <select id="key">
+                    <option value="C">C</option>
+                    <option value="C#">C#</option>
+                    <option value="D">D</option>
+                    <option value="D#">D#</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="F#">F#</option>
+                    <option value="G">G</option>
+                    <option value="G#">G#</option>
+                    <option value="A">A</option>
+                    <option value="A#">A#</option>
+                    <option value="B">B</option>
+                </select>
+            </div>
+            
+            <div class="control-item">
+                <label for="scale">Scale</label>
+                <select id="scale">
+                    <option value="chromatic">Chromatic (All Notes)</option>
+                    <option value="major">Major</option>
+                    <option value="minor">Minor</option>
+                    <option value="pentatonic">Pentatonic</option>
+                    <option value="blues">Blues</option>
+                </select>
+            </div>
+            
+            <div class="control-item">
+                <label for="detune">Detune</label>
+                <input type="range" id="detune" min="0" max="50" step="1" value="0">
+                <div class="value-display">0 cents</div>
+            </div>
+            
+            <div class="control-item">
+                <label for="chord-mode">Chord Mode</label>
+                <select id="chord-mode">
+                    <option value="off">Off</option>
+                    <option value="triad">Triads</option>
+                    <option value="power">Power Chords</option>
+                    <option value="seventh">7th Chords</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="action-row">
+            <div class="octave-control">
+                <button id="octave-down" class="btn btn-small">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 15L12 9L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Oct-
+                </button>
+                <span id="octave-display">C4-C5</span>
+                <button id="octave-up" class="btn btn-small">
+                    Oct+
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 9L12 15L19 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="preset-control">
+                <select id="preset-select">
+                    <option value="">Select Preset</option>
+                    <option value="init">Default</option>
+                    <option value="bass">Fat Bass</option>
+                    <option value="pad">Ambient Pad</option>
+                    <option value="lead">Sharp Lead</option>
+                    <option value="pluck">Plucky</option>
+                </select>
+                <button id="save-preset" class="btn btn-small">Save</button>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button id="panic-button" class="btn btn-danger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="2"/>
+                    <path d="M15 9L9 15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M9 9L15 15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Stop All Sounds
+            </button>
+        </div>
+        
+        <div class="keyboard-container">
+            <div class="keyboard">
+                <!-- The keyboard keys will be generated by JavaScript based on current octave -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Tap or slide across keys to play. Use the panic button if sounds get stuck.</p>
+        <p class="keyboard-tip">Computer keyboard: A-K keys = current octave | W, E, T, Y, U = black keys</p>
+    </div>
+    
+    <!-- Import map for ES modules -->
+    <script type="importmap">
+    {
+      "imports": {
+        "audioEngine": "./js/audioEngine.js",
+        "noteProcessor": "./js/noteProcessor.js",
+        "uiControls": "./js/uiControls.js",
+        "keyboardInterface": "./js/keyboardInterface.js",
+        "visualizer": "./js/visualizer.js",
+        "presets": "./js/presets.js",
+        "scales": "./js/scales.js",
+        "keyboard/keyboardLayout": "./js/keyboard/keyboardLayout.js",
+        "keyboard/touchHandlers": "./js/keyboard/touchHandlers.js",
+        "keyboard/computerKeyboard": "./js/keyboard/computerKeyboard.js",
+        "keyboard/chordUtils": "./js/keyboard/chordUtils.js"
+      }
+    }
+    </script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

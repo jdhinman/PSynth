@@ -1,0 +1,33 @@
+// Resize the visualizer canvas to fit container
+export function resizeVisualizer() {
+    if (!visualizerCanvas) return;
+    
+    const container = visualizerCanvas.parentElement;
+    if (!container) return;
+    
+    // Set canvas dimensions to match container size
+    visualizerCanvas.width = container.clientWidth;
+    visualizerCanvas.height = container.clientHeight;
+    
+    console.log("Visualizer resized to", visualizerCanvas.width, "x", visualizerCanvas.height);
+}
+
+// Clean up on destruction
+export function stopVisualizer() {
+    isVisualizerActive = false;
+    if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+    }
+    
+    // Clear the visualizer canvas
+    if (visualizerCtx && visualizerCanvas) {
+        visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+    }
+    
+    console.log("Visualizer stopped and cleared");
+}
+
+// Make sure exports are explicitly defined at the end of the file
+// This can help resolve certain module loading issues
+export { initVisualizer, resizeVisualizer, stopVisualizer };
